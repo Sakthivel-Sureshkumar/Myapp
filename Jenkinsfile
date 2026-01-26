@@ -15,9 +15,10 @@ pipeline {
     stage('Docker Build') {
       steps {
         sh '''
-          GIT_SHA=$(git rev-parse --short HEAD)
-          docker build -t ${IMAGE}:${GIT_SHA} .
-          docker tag ${IMAGE}:${GIT_SHA} ${IMAGE}:latest
+          set -e
+          // GIT_SHA=$(git rev-parse --short HEAD)
+          docker build -t ${IMAGE}:${BUILD_NUMBER} .
+          // docker tag ${IMAGE}:${GIT_SHA} ${IMAGE}:latest
         '''
       }
     }
@@ -25,8 +26,9 @@ pipeline {
     stage('Run Container') {
       steps {
         sh '''
+          set -e
           docker rm -f ${APP_NAME} || true
-          docker run -d --name ${APP_NAME} -p ${PORT}:${PORT} ${IMAGE}:latest
+          docker run -d --name ${APP_NAME} -p ${PORT}:${PORT} ${IMAGE}:${BUILD_NUMBER}
           docker ps
         '''
       }
