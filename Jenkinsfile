@@ -16,9 +16,8 @@ pipeline {
       steps {
         sh '''
           set -e
-          // GIT_SHA=$(git rev-parse --short HEAD)
+          echo "Building image: ${IMAGE}:${BUILD_NUMBER}"
           docker build -t ${IMAGE}:${BUILD_NUMBER} .
-          // docker tag ${IMAGE}:${GIT_SHA} ${IMAGE}:latest
         '''
       }
     }
