@@ -4,6 +4,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Hello Sakthi Machi! error in webhook -> ngrok -> jenkins in ubuntu"
+    return "Hello Sakthi Machi! error in webhook -> ngrok -> jenkins in ubuntu- checking the current status"
 
 app.run(host="0.0.0.0", port=5000)
