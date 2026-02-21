@@ -18,24 +18,20 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         sh '''
-          echo "Building Docker image..."
-          docker build -t ${IMAGE}:${BUILD_NUMBER} .
+          echo "Cleaning old docker images..."
+          docker system prune -af || true
+
+          echo "Building fresh image..."
+          docker build -t ${IMAGE}:latest .
         '''
       }
     }
 
-    stage('Stop Old Container') {
+    stage('Deploy Container') {
       steps {
         sh '''
           docker rm -f ${APP_NAME} || true
-        '''
-      }
-    }
-
-    stage('Run Container') {
-      steps {
-        sh '''
-          docker run -d --name ${APP_NAME} -p ${PORT}:${PORT} ${IMAGE}:${BUILD_NUMBER}
+          docker run -d --name ${APP_NAME} -p ${PORT}:${PORT} ${IMAGE}:latest
         '''
       }
     }
