@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 # Quotes dictionary
 quotes = {
-    "0": "Zero excuses. Start now. 💪",
+    "0": "Zero excuses. Start now.",
     "1": "One step at a time leads to big success.",
     "2": "Two choices: Give up or grow.",
     "3": "Three words: You got this!",
