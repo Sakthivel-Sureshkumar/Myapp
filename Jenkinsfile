@@ -8,16 +8,26 @@ pipeline {
   }
 
   stages {
+
     stage('Checkout') {
-      steps { checkout scm }
+      steps {
+        checkout scm
+      }
     }
 
-    stage('Docker Build') {
+    stage('Build Docker Image') {
       steps {
         sh '''
-          set -e
-          echo "Building image: ${IMAGE}:${BUILD_NUMBER}"
+          echo "Building Docker image..."
           docker build -t ${IMAGE}:${BUILD_NUMBER} .
+        '''
+      }
+    }
+
+    stage('Stop Old Container') {
+      steps {
+        sh '''
+          docker rm -f ${APP_NAME} || true
         '''
       }
     }
@@ -25,11 +35,14 @@ pipeline {
     stage('Run Container') {
       steps {
         sh '''
-          set -e
-          docker rm -f ${APP_NAME} || true
           docker run -d --name ${APP_NAME} -p ${PORT}:${PORT} ${IMAGE}:${BUILD_NUMBER}
-          docker ps
         '''
+      }
+    }
+
+    stage('Verify') {
+      steps {
+        sh 'docker ps'
       }
     }
   }
