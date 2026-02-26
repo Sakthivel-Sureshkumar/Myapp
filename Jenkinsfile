@@ -55,7 +55,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com//https:/Sakthivel-Sureshkumar/github.com/Sakthivel-Sureshkumar/Myapp.git'
+                    url: 'https:/Sakthivel-Sureshkumar/github.com/Sakthivel-Sureshkumar/Myapp.git'
             }
         }
 
