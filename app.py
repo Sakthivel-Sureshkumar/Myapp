@@ -33,7 +33,7 @@ def home():
 # Quote Page
 @app.route("/quote/<num>")
 def show_quote(num):
-    quote = quotes.get(num, "Invalid number!")
+    quote = quotes.get(num, "Invalid number Mach !")
     return render_template_string("""
         <h2>Your Motivational Quote:</h2>
         <p style="font-size:20px;">{{quote}}</p>
