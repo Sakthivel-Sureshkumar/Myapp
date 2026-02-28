@@ -12,7 +12,7 @@ quotes = {
     "5": "Five minutes of effort beats zero action.",
     "6": "Six times you fall, seven times you rise.",
     "7": "Seven days a week – stay consistent!",
-    "8": "Eight letters: Believe in yourself.",
+    "8": "Believe in yourself.",
     "9": "Nine lives? No. One life. Make it count!"
 }
 
