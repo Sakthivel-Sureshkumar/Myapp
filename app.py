@@ -13,7 +13,7 @@ quotes = {
     "6": "Six times you fall, seven times you rise.",
     "7": "Seven days a week – stay consistent!",
     "8": "Believe in yourself.",
-    "9": "Nine lives? No. One life. Make it count!"
+    "9": "One life. Make it count!"
 }
 
 # Home Page
