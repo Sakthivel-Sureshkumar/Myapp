@@ -20,109 +20,26 @@ quotes = {
 @app.route("/")
 def home():
     return render_template_string("""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Number Selector</title>
-        <style>
-            body {
-                margin: 0;
-                font-family: 'Segoe UI', sans-serif;
-                background: linear-gradient(135deg, #1e3c72, #2a5298);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                color: white;
-            }
-
-            .container {
-                text-align: center;
-            }
-
-            h1 {
-                font-size: 40px;
-                margin-bottom: 30px;
-            }
-
-            .btn {
-                padding: 15px 22px;
-                margin: 8px;
-                font-size: 18px;
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: 0.3s ease;
-                background: white;
-                color: #2a5298;
-                font-weight: bold;
-            }
-
-            .btn:hover {
-                transform: scale(1.1);
-                background: #ffcc00;
-                color: black;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>Select a Number (0-9)</h1>
-
-            {% for num in range(10) %}
-                <a href="/quote/{{num}}">
-                    <button class="btn">{{num}}</button>
-                </a>
-            {% endfor %}
-        </div>
-    </body>
-    </html>
+        <h1>Select a Number (0-9)</h1>
+        {% for num in range(10) %}
+            <a href="/quote/{{num}}">
+                <button style="margin:5px; padding:10px 15px;">
+                    {{num}}
+                </button>
+            </a>
+        {% endfor %}
     """)
+
 # Quote Page
 @app.route("/quote/<num>")
 def show_quote(num):
-    quote = quotes.get(num, "Invalid number Mach!")
+    quote = quotes.get(num, "Invalid number Mach !")
     return render_template_string("""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <style>
-            body {
-                margin: 0;
-                font-family: 'Segoe UI', sans-serif;
-                background: linear-gradient(135deg, #000428, #004e92);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                color: white;
-                text-align: center;
-            }
-
-            .card {
-                background: rgba(255,255,255,0.1);
-                padding: 40px;
-                border-radius: 15px;
-                backdrop-filter: blur(10px);
-            }
-
-            a {
-                color: #ffcc00;
-                text-decoration: none;
-                font-weight: bold;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="card">
-            <h2>Your Motivational Quote</h2>
-            <p style="font-size:22px;">{{quote}}</p>
-            <br>
-            <a href="/">← Go Back</a>
-        </div>
-    </body>
-    </html>
+        <h2>Your Motivational Quote:</h2>
+        <p style="font-size:20px;">{{quote}}</p>
+        <br>
+        <a href="/">Go Back</a>
     """, quote=quote)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000) 
